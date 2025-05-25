@@ -1,9 +1,7 @@
 @extends('layout.formregister')
-
 @section('content')
-    @include('layout.navbar') {{-- Navbar akan muncul di atas --}}
+@include('layout.navbar') {{-- Navbar akan muncul di atas --}}
 
-   
 
     <div class="register-container">
         <h2 class="register-title">Register</h2>
@@ -47,4 +45,4 @@
             <button type="submit" class="btn-submit">Register</button>
         </form>
     </div>
-@endsection
+    @endsection

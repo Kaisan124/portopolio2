@@ -8,7 +8,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class AkunController extends Controller
+
 {
+    public function home()
+    {
+        return view('auth.home');
+    }
     public function showRegisterForm()
     {
         return view('auth.register');
@@ -32,6 +37,8 @@ class AkunController extends Controller
         return redirect()->route('register')->with('success', 'Registrasi berhasil');
     }
 
+
+
     // Menampilkan form login
     public function showLoginForm()
     {
@@ -48,11 +55,17 @@ class AkunController extends Controller
 
         if (Auth::attempt($request->only('username', 'password'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/')->with('success', 'Login berhasil.');
+            return redirect('/dashboard');
         }
+
+
 
         return back()->withErrors([
             'username' => 'Email atau password salah.',
         ]);
+    }
+    public function logout()
+    {
+        return view('auth.home');
     }
 }
