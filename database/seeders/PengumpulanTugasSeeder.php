@@ -9,7 +9,7 @@ class PengumpulanTugasSeeder extends Seeder
     public function run()
     {
         PengumpulanTugas::create([
-            'pertemuan' => 'Pertemuan 1',
+            'pertemuan' => '1',
             'upload_tugas' => null,
             'nama' => 'Andi',
             'nomor_hp' => '081234567890',

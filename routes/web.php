@@ -29,12 +29,17 @@ Route::get('/', [AkunController::class, 'home'])->name('home');
 
     Route::get('/dashboard', [DashboardController::class, 'dashboard']);
         // Route::get('/pengumpulantugas', [DashboardController::class, 'pengumpulantugas']);
-        Route::get('/penilaiantugas', [DashboardController::class, 'penilaiantugas']);
-
+    
 
 Route::resource('/pengumpulan', PengumpulanTugasController::class);
 Route::get('/pengumpulantugas', [PengumpulanTugasController::class, 'index'])->name('pengumpulan.index');
 Route::get('/pengumpulanupload/{id}', [PengumpulanTugasController::class, 'uploadForm'])->name('pengumpulan.uploadForm');
 Route::post('/pengumpulanupload/{id}', [PengumpulanTugasController::class, 'uploadFile'])->name('pengumpulan.uploadFile');
+Route::get('/pengumpulan/{id}/detail', [PengumpulanTugasController::class, 'show'])->name('pengumpulan.show');
 Route::get('/editpengumpulan/{id}', [PengumpulanTugasController::class, 'edit'])->name('pengumpulan.edit');
 Route::put('/editpengumpulan/{id}', [PengumpulanTugasController::class, 'update'])->name('pengumpulan.update');
+Route::get('/penilaiantugas', [PenilaianTugasController::class, 'index'])->name('penilaian.index');
+Route::resource('penilaian', PenilaianTugasController::class);
+Route::get('/penilaian', [PenilaianTugasController::class, 'index']);
+
+

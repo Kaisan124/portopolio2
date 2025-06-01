@@ -20,22 +20,31 @@ class AkunController extends Controller
     }
 
     // Logika untuk registrasi
-    public function register(Request $request)
-    {
-        $request->validate([
-            'username' => 'required|string|max:255|unique:users',
-            'role' => 'required|string|in:instruktur,siswa',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+public function register(Request $request)
+{
+    $request->validate([
+        'username' => 'required|string|max:255|unique:users',
+        'role' => 'required|string|in:instruktur,siswa',
+        'password' => 'required|string|min:8|confirmed',
+    ]);
 
-        User::create([
-            'username' => $request->username,
-            'role' => $request->role,
-            'password' => Hash::make($request->password),
-        ]);
+    // Map role ke id_role
+    $roleMap = [
+        'instruktur' => 1,
+        'siswa' => 2,
+    ];
 
-        return redirect()->route('register')->with('success', 'Registrasi berhasil');
-    }
+    $idRole = $roleMap[$request->role];
+
+    User::create([
+        'username' => $request->username,
+        'role' => $request->role,
+        'id_role' => $idRole,           // <-- ini yang ditambahkan
+        'password' => Hash::make($request->password),
+    ]);
+
+    return redirect()->route('register')->with('success', 'Registrasi berhasil');
+}
 
 
 
